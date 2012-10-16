@@ -1,0 +1,28 @@
+<paquet
+	prefix="so"
+	categorie="communication"
+	version="1.0.0"
+	etat="stable"
+	compatibilite="[3.0.4;3.0.*]"
+	logo="prive/themes/spip/images/emblem-favorite.png"
+	documentation=""
+	schema="0.1.0" 
+>
+
+
+
+	<nom>S&eacute;lection d'objets</nom>
+
+	<!-- cette balise peut Ãªtre prÃ©sente plusieurs fois s'il y a plusieurs auteurs --> 
+	<auteur>[Rainer Müller->websolutions@mychacra.net] -  [www.mychacra.net->http://www.mychacra.net/]</auteur>
+
+	<licence>GNU/GPL</licence>
+
+	<pipeline nom="declarer_tables_principales" inclure="base/so_install.php" /> 
+	<pipeline nom="declarer_tables_interfaces" inclure="base/so_tables_interfaces.php" /> 
+	<pipeline nom="affiche_milieu" inclure="so_pipelines.php" /> 
+	<pipeline nom="affiche_gauche" inclure="so_pipelines.php" /> 
+
+	<menu nom="favoris" titre="so:favoris" parent="menu_edition" icone="images/emblem-favorite-16.png" action="favoris" /> 
+</paquet>
+

@@ -1,0 +1,14 @@
+
+<div class="formulaire_spip formulaire_#FORM">
+	<h3  class="titrem"><:so:choix_favoris:></h3>
+
+	<form action="[(#ENV{action}|parametre_url{eliminer_rubrique,''})]" method="post"><div>
+    	#ACTION_FORMULAIRE{#ENV{action}}
+
+    	[(#ENV{selectionne}|?{		
+    		<input type="submit" name="delete" class="submit" value="<:so:non:>"  />	,
+    	    	<input type="submit" name="save" class="submit" value="<:so:oui:>"  />
+    		})]
+    	</div>	
+	</form>
+</div>

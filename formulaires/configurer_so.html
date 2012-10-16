@@ -1,0 +1,42 @@
+<!-- nom=edition_directe -->
+
+
+
+		
+
+
+#SET{selected,#CONFIG{so/id_rubrique,#ARRAY}}
+
+
+<div class="formulaire_spip formulaire_#FORM">
+
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+
+	<form action="#ENV{action}" method="post"><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<ul>
+			<li>
+				<label><b><:pb_lection:selection_rubrique:></b><br/>
+				<select name="id_rubrique[]" multiple="multiple" size="5" id="id_rubrique">
+				#SET{id_secteur,0}
+				<option value="#GET{id_secteur}"[(#GET{id_secteur}|in_array{#GET{selected}}|?{' selected="selected"'})]><:pb_lection:racine:></option>
+				<BOUCLE_rmul(RUBRIQUES){racine}{tout}{par num titre, titre}>
+					<option value="#ID_RUBRIQUE"[(#ID_RUBRIQUE|in_array{#GET{selected}}|?{' selected="selected"'})]>
+					#TITRE
+					</option>
+				</BOUCLE_rmul>
+				</select>
+			</li>
+		</ul>
+		
+		<p class="boutons">
+			<input type="submit" name="_cfg_ok" class="submit" value="<:bouton_enregistrer:>" />
+		</p>
+		
+	</div></form>
+</div>
+
+
+#SET{selected,#CONFIG{so/id_rubrique,#ARRAY}}
+
