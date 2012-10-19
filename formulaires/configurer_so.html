@@ -9,18 +9,10 @@
 	<form action="#ENV{action}" method="post"><div>
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<ul>
-			<li>
-				<label><b><:pb_lection:selection_rubrique:></b><br/>
-				<select name="id_rubrique[]" multiple="multiple" size="5" id="id_rubrique">
-				#SET{id_secteur,0}
-				<option value="#GET{id_secteur}"[(#GET{id_secteur}|in_array{#GET{selected}}|?{' selected="selected"'})]><:pb_lection:racine:></option>
-				<BOUCLE_rmul(RUBRIQUES){racine}{tout}{par num titre, titre}>
-					<option value="#ID_RUBRIQUE"[(#ID_RUBRIQUE|in_array{#GET{selected}}|?{' selected="selected"'})]>
-					#TITRE
-					</option>
-				</BOUCLE_rmul>
-				</select>
-			</li>
+			 [(#SAISIE{selecteur_rubrique,selection_rubrique,
+            multiple=oui,
+            label=<:pb_lection:selection_rubrique:>}
+            )] 
 		</ul>
 		
 		<p class="boutons">

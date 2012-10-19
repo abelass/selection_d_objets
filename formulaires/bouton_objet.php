@@ -23,15 +23,20 @@ function verifier_ordre($where){
 	return $ordre;
 }
 
-function formulaires_bouton_article_charger_dist($id_objet,$objet,$langue,$lang='') {
+function formulaires_bouton_objet_charger_dist($id_objet,$objet,$langue,$lang='',$objet_dest='rubrique',$id_objet_dest) {
+    
     $valeurs = array(
 	"id_objet"	=> $id_objet,
 	"objet"	=> $objet,	
-	"langue"	=> $langue,		 		
+	"langue"	=> $langue,	
+	"objet_dest"=>$objet_dest,
+    "id_objet_dest"=>$id_objet_dest,		 		
     );
     $valeurs['_hidden'] .= "<input type='hidden' name='id_objet' value='$id_objet' />";
     $valeurs['_hidden'] .= "<input type='hidden' name='objet' value='$objet' />";
     $valeurs['_hidden'] .= "<input type='hidden' name='lang' value='$langue' />";
+    $valeurs['_hidden'] .= "<input type='hidden' name='objet_dest' value='$objet_dest' />";
+
     
     $where=array(
     	'id_objet='.$id_objet,
@@ -59,9 +64,10 @@ function formulaires_bouton_article_charger_dist($id_objet,$objet,$langue,$lang=
 
 
 /* @annotation: Actualisation de la base de donnée */
-function formulaires_bouton_article_traiter_dist($id_objet,$objet,$langue,$lang=''){
+function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''){
 	$id_objet_dest=_request('id_objet_dest');
 	$objet_dest=_request('objet_dest');
+    $valeurs='';
 	
 	if(!$id_objet_dest){
 		$id_objet_dest ='0';
@@ -71,8 +77,7 @@ function formulaires_bouton_article_traiter_dist($id_objet,$objet,$langue,$lang=
 	if($langue)$langue=explode(',',$langue);
 	else $langue=array();
 
-	if (_request('save')){
-			
+
 		// si objet pas définit par langue on enrgistre pour chaque langue du site
 		if(count($langue)>1){
 		
@@ -132,55 +137,7 @@ function formulaires_bouton_article_traiter_dist($id_objet,$objet,$langue,$lang=
 			
 			
 
-
-			}
-	elseif(_request('delete')){
-	
-		if(count($langue)>1){
-			foreach ($langue as $key => $l){
-				$where=array(
-					'id_objet='.$id_objet,
-					'objet="'.$objet.'"',
-					'lang="'.$l.'"',	
-					'id_objet_dest="'.$id_objet_dest.'"',
-					'objet_dest="'.$objet_dest.'"',												  
-					);
-							
-				sql_delete("spip_selection_objets",$where);
-					
-				// on vérifie l'ordre des objets déjà enregistrés et on corrige si besoin
-				
-				$where = array(
-				'id_objet_dest='.$id_objet_dest,
-				'objet_dest="'.$objet_dest.'"',
-				'lang="'.$l.'"',	
-				);
-				
-				$ordre=verifier_ordre($where);	
-				}
-			}
-		else{
-			$where=array(
-				'id_objet='.$id_objet,
-				'objet="'.$objet.'"',
-				'lang="'.$langue[0].'"',	
-				'id_objet_dest="'.$id_objet_dest.'"',
-				'objet_dest="'.$objet_dest.'"',
-				);
-							
-			sql_delete("spip_selection_objets",$where);
-					
-			// on vérifie l'ordre des objets déjà enregistrés et on corrige si besoin
-				
-			$where = array(
-				'id_objet_dest='.$id_objet_dest,
-				'objet_dest="'.$objet_dest.'"',
-				'lang="'.$langue[0].'"',	
-				);
-				
-			verifier_ordre($where);	
-			}
-		}
+return $valeurs;
 	
 }
 ?>

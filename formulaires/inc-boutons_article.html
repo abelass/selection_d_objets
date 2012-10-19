@@ -1,4 +1,4 @@
-#SET{id_rubrique,#CONFIG{so/id_rubrique,#ARRAY}}
+
 #SET{id_secteur,0}
 
 
@@ -12,7 +12,7 @@
 		<option value="0"><:so:racine:></option>
 		]
 	]
-      <BOUCLE_rub(RUBRIQUES){id_rubrique IN #GET{id_rubrique}} {lang=#ENV{langue}}{id_rubrique !IN #ENV{exclure}}>
+      <BOUCLE_rub(RUBRIQUES){id_rubrique IN #ENV{rubriques}} {lang=#ENV{langue}}{id_rubrique !IN #ENV{exclure}}>
    	<option value="#ID_RUBRIQUE" >#TITRE</option>
       </BOUCLE_rub>  
 	</select>
@@ -24,7 +24,7 @@
 		[(#ENV{exclure_source}|non)
 		<fieldset>
 	<label><:so:affichage_section:></label>
-	<select name="id_rubrique">	
+	<select name="id_objet_dest">	
 		<option value="0"><:so:racine:></option>
 		</select>
     	<p class="boutons">
