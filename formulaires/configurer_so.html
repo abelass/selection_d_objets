@@ -1,4 +1,10 @@
-#SET{selected,#CONFIG{so/id_rubrique,#ARRAY}}
+#SET{objets,#ARRAY}
+
+<BOUCLE_objets_liste(DATA){source tableau,#VAL|lister_tables_objets_sql}{par cle}{editable = oui}>
+    [(#VALEUR{page}|is_string|oui)
+        [(#SET{objets,#GET{objets}|array_merge{#ARRAY{#VALEUR{page},#VALEUR{texte_objets}|_T}}})]
+    ]
+</BOUCLE_objets_liste>
 
 
 <div class="formulaire_spip formulaire_#FORM">
@@ -9,10 +15,15 @@
 	<form action="#ENV{action}" method="post"><div>
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<ul>
-			 [(#SAISIE{selecteur_rubrique,selection_rubrique,
-            multiple=oui,
-            label=<:pb_lection:selection_rubrique:>}
-            )] 
+			 [(#SAISIE{selecteur_rubrique,selection_rubrique_dest,
+                multiple=oui,
+                label=<:so:selection_rubrique_dest:>,
+                explication=<:so:explication_selection_rubrique_dest:>}
+                )] 
+            [(#SAISIE{checkbox,selection_rubrique_objet,
+            datas=#GET{objets},
+            label=<:so:selection_rubrique_objet:>}
+            )]             
 		</ul>
 		
 		<p class="boutons">
@@ -21,7 +32,3 @@
 		
 	</div></form>
 </div>
-
-
-
-
