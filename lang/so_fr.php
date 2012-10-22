@@ -11,7 +11,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// c
 	'choix_favoris' => 'Afficher comme favoris :',
 	
+    //D
+    'objet_destination_choisis'=>'Destination(s) choisie(s) :',
 	
+	//E
+	'explication_selection_rubrique_dest'=>'Quelles rubriques doient être proposé rubrique de déstination de la sélection',
 	// f
 	'favoris' => 'Favoris',	
 	
@@ -26,8 +30,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubriques_choisis' => 'Rubriques choisis :',
 	
 	//s
-	'selection_article' => 'Selection d\'articles',
-
+	'selection_objet' => 'Sélection',	
+	'selection_rubrique_dest' => 'Rubrique(s) de déstination',
+    'selection_rubrique_objet' => 'Objets proposé pour la sélection',
+    
 );
 
 ?>
