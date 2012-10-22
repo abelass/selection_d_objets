@@ -2,27 +2,6 @@
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
-function verifier_ordre($where){
-	$result_num = sql_select("*","spip_selection_objets", $where,'', "ordre,id_objet");
-	$ordre = 0;
-				
-	// on vérifie l'ordre des objets déjà enregistrés et on corrige si besoin
-				
-	while ($row = sql_fetch($result_num)) {
-		$ordre++;
-		$where = array(
-			'id_objet='.$row['id_objet'],					
-			'id_objet_dest='.$row['id_objet_dest'],
-			'objet_dest="'.$row['objet_dest'].'"',
-			'lang="'.$row['lang'].'"',	
-			);
-
-		sql_updateq("spip_selection_objets",array("ordre" => $ordre),$where) ;
-		}
-		
-	return $ordre;
-}
-
 function formulaires_bouton_objet_charger_dist($id_objet,$objet,$langue,$lang='',$objet_dest='rubrique') {
     
     $valeurs = array(
@@ -68,6 +47,7 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 
     $valeurs='';
     $id_objet_dest=_request('id_objet_dest');
+    $verifier_ordre=charger_fonction('verifier_ordre','inc');
 	
 	/*if(!$id_objet_dest){
 		$id_objet_dest ='0';
@@ -85,11 +65,11 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 						
 				$where = array(
 					'id_objet_dest='.$id_objet_dest,
-					'objet_dest="'.$objet_dest.'"',
-					'lang="'.$l.'"',	
+					'objet_dest='.sql_quote($objet_dest),
+					'lang='.sql_quote($l),	
 					);
 		
-				$ordre=verifier_ordre($where);
+				$ordre=$verifier_ordre($where);
 					
 				// on rajoute comme dernier le nouveau objet	
 				$ordre=$ordre+1;
@@ -111,12 +91,12 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 		else{
 			$where = array(
 				'id_objet_dest='.$id_objet_dest,
-				'objet_dest="'.$objet_dest.'"',
-				'lang="'.$langue[0].'"',	
+				'objet_dest='.sql_quote($objet_dest),
+				'lang='.sql_quote($langue[0]),	
 				);
 			// on vérifie l'ordre des objets déjà enregistrés et on corrige si besoin
 			
-			$ordre=verifier_ordre($where);
+			$ordre=$verifier_ordre($where);
 				
 			// on rajoute comme dernier le nouveau objet			
 			$ordre=$ordre+1;
