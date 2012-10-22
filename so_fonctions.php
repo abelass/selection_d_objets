@@ -28,7 +28,7 @@ function info_objet($id_objet,$objet,$champ='*'){
 
 }
 
-/* Fonction qui founit le lien */
+/* Fonction qui fournit le lien */
 function url_objet($id_objet,$objet){
 
 	$title=info_objet($id_objet,$objet,'titre');
