@@ -6,7 +6,7 @@
 	<B_rub>
 	<fieldset>
 	<label><:so:affichage_section:></label>
-	<select name="id_rubrique">
+	<select name="id_objet_dest">
 	[([(#GET{id_secteur}|in_array{#GET{id_rubrique}}|oui)
 		[(#ENV{exclure_source}|non)
 		<option value="0"><:so:racine:></option>

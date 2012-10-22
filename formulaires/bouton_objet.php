@@ -23,15 +23,15 @@ function verifier_ordre($where){
 	return $ordre;
 }
 
-function formulaires_bouton_objet_charger_dist($id_objet,$objet,$langue,$lang='',$objet_dest='rubrique',$id_objet_dest) {
+function formulaires_bouton_objet_charger_dist($id_objet,$objet,$langue,$lang='',$objet_dest='rubrique') {
     
     $valeurs = array(
-	"id_objet"	=> $id_objet,
-	"objet"	=> $objet,	
-	"langue"	=> $langue,	
-	"objet_dest"=>$objet_dest,
-    "id_objet_dest"=>$id_objet_dest,		 		
-    );
+    	"id_objet"	=> $id_objet,
+    	"objet"	=> $objet,	
+    	"langue"	=> $langue,	
+    	"objet_dest"=>$objet_dest,
+        "id_objet_dest"=>$id_objet_dest,		 		
+        );
     $valeurs['_hidden'] .= "<input type='hidden' name='id_objet' value='$id_objet' />";
     $valeurs['_hidden'] .= "<input type='hidden' name='objet' value='$objet' />";
     $valeurs['_hidden'] .= "<input type='hidden' name='lang' value='$langue' />";
@@ -64,15 +64,15 @@ function formulaires_bouton_objet_charger_dist($id_objet,$objet,$langue,$lang=''
 
 
 /* @annotation: Actualisation de la base de donnée */
-function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''){
-	$id_objet_dest=_request('id_objet_dest');
-	$objet_dest=_request('objet_dest');
+function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang='',$objet_dest='rubrique'){
+
     $valeurs='';
+    $id_objet_dest=_request('id_objet_dest');
 	
-	if(!$id_objet_dest){
+	/*if(!$id_objet_dest){
 		$id_objet_dest ='0';
 		$objet_dest ='-';				
-		}
+		}*/
 
 	if($langue)$langue=explode(',',$langue);
 	else $langue=array();
@@ -94,7 +94,7 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 				// on rajoute comme dernier le nouveau objet	
 				$ordre=$ordre+1;
 			
-				$valeurs=array(
+				$vals=array(
 					'id_objet' => $id_objet,
 					'objet'=>$objet, 
 					'id_objet_dest'=>$id_objet_dest,
@@ -121,7 +121,7 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 			// on rajoute comme dernier le nouveau objet			
 			$ordre=$ordre+1;
 			
-			$valeurs=array(
+			$vals=array(
 				'id_objet' => $id_objet,
 				'objet'=>$objet, 
 				'id_objet_dest'=>$id_objet_dest,
@@ -130,7 +130,7 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 				'lang'=>$langue[0]
 				);
 					
-			sql_insertq("spip_selection_objets",$valeurs);
+			sql_insertq("spip_selection_objets",$vals);
 		
 			}
 			

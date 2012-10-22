@@ -1,26 +1,29 @@
-#SET{id_rubrique,#CONFIG{so/selection_rubrique,#ARRAY}|picker_selected{rubrique}}
+#SET{id_rubrique,#CONFIG{so/selection_rubrique_dest,#ARRAY}|picker_selected{rubrique}}
 
 #SET{exclude,#ARRAY}
 <B_test>
-<div class="cadre cadre-r">
-    <div class="titrem">
-    <h2><:pb_selection:selection_article:></h2>
+
+    
+        <h2><:so:selection_objet:> [(#VAL|lister_tables_objets_sql|table_valeur{spip_#OBJETs}|table_valeur{texte_objets}|_T)]</h2>
+      
     <B_affichage>
-    <b><:pb_selection:rubriques_choisis:></b>
+    <p>
+    <b><:so:objet_destination_choisis:></b>
     <ul style="list-style:none;text-align:left;">   
     <BOUCLE_affichage(SELECTION_OBJETS){id_objet}{objet}>
-        [(#ID_RUBRIQUE|=={0}|oui)<li><:pb_selection:racine:><a href="[(#SELF|parametre_url{eliminer_rubrique,'racine'})]" class="ajax"> <img src="#CHEMIN{imgs/item-remove.png}"></a></li>
+        [(#ID_RUBRIQUE|=={0}|oui)<li><:so:racine:><a href="[(#SELF|parametre_url{eliminer_rubrique,'racine'})]" class="ajax">&nbsp;<img src="#CHEMIN{imgs/item-remove.png}"></a></li>
         #SET{exclude,#GET{exclude}|array_merge{#ARRAY{0,0}}}
         #SET{exclude_source,oui}
         ]
         
         <BOUCLE_rub(RUBRIQUES){id_rubrique=#ID_OBJET_DEST}{tout}>
         #SET{exclude,#GET{exclude}|array_merge{#ARRAY{#COMPTEUR_BOUCLE,#ID_RUBRIQUE}}}
-        <li>#TITRE<a href="[(#SELF|parametre_url{eliminer_rubrique,#ID_RUBRIQUE})]" class="ajax"><img src="[(#CHEMIN{imgs/item-remove.png})]"></a></li>
+        <li>#TITRE<a href="[(#SELF|parametre_url{eliminer_rubrique,#ID_RUBRIQUE})]" class="ajax">&nbsp;<img src="[(#CHEMIN{imgs/item-remove.png})]"></a></li>
         </BOUCLE_rub>
     </BOUCLE_affichage>
     </ul>
     #SET{nombre,#TOTAL_BOUCLE}
+    </p>
     </B_affichage>
 <BOUCLE_test(POUR){tableau #GET{id_rubrique}}>
 #SET{id_rub,#VALEUR}
@@ -54,7 +57,7 @@
         ]
 ]
     </form>
-    </div>  
-</div>
+
+
 
 </B_test>
