@@ -14,64 +14,17 @@ function action_ranger_dist(){
 	$p=explode(basename(_DIR_PLUGINS)."/",str_replace('\\','/',realpath(dirname(__FILE__))));
 	define('_DIR_PLUGIN_SELECTION',(_DIR_PLUGINS.end($p)));
 
-	$id_objet = _request("id_objet");
-	$id_objet_dest = _request("id_objet_dest");
-	$objet = _request("objet");
-	$objet_dest = _request("objet_dest");	
-	$lang = _request("langue");
-	$action=_request('arg');
 
-	
-	
-	
-	if ($_GET["ajouter_selection"] > 0) {
-		$ajouter = $_GET["ajouter_selection"];
-		$id_rubrique = $_GET["id_rubrique"];
-		
-		
-		if (!autoriser('modifier','rubrique', $id_rubrique)) die ("Interdit");
-	
-		$result = sql_select("id_article", "spip_articles", "id_article=$ajouter");
-		
-		$langue = sql_select("lang", "spip_articles", "id_article=$ajouter");
-		
-		while ($data = sql_fetch($langue)) {
-			$lang = $data["lang"];
-				}
-	
-		if ($row = sql_fetch($result)) {
-			$result_test = sql_select("id_article", "spip_pb_selection", "id_rubrique=$id_rubrique AND id_article=$ajouter");
-			if ($row_test = sql_fetch($result_test)) {
-				echo "Cet article est déjà sélectionné.";
-			} else {
-				// Pas moyen de faire fonctionner le LIMIT 0,1 et l'ordre inverse avec sqlite
-				$where = array( 
-				"id_rubrique='$id_rubrique'",
-				"lang='$lang'"			
-				);
-				
-				$result_num = sql_select("ordre", "spip_pb_selection", $where, "ordre");
-				$ordre = 0;
-				while ($row_num = sql_fetch($result_num)) {
-					$ordre = $row_num["ordre"];
-				}
-				$ordre ++;
-				sql_insertq("spip_pb_selection", array('id_rubrique' => $id_rubrique, 'id_article'=>$ajouter, 'ordre'=>$ordre, 'lang'=>$lang));
-				
-			}
-	
-		} else {
-			echo "Cet article n'existe pas.";
-		}
-	
-	
-	}
-	
+    
+  
+	list($action,$lang,$id_objet,$objet,$objet_dest,$id_objet_dest)=explode('-',_request('arg'));
+
 	if ($action=="supprimer_ordre") {
+	    $verifier_ordre=charger_fonction('verifier_ordre','inc');
 	
 		include_spip('formulaires/bouton_article');
 
-		if($objet=='rubriques'){
+		if($objet=='rubrique'){
 		
 			$langues=explode(",",lire_config("langues_utilisees"));
 		
@@ -91,11 +44,11 @@ function action_ranger_dist(){
 				
 				$where = array(
 				'id_objet_dest='.$id_objet_dest,
-				'objet_dest="'.$objet_dest.'"',
-				'lang="'.$langue.'"',	
+				'objet_dest='.sql_quote($objet_dest),
+				'lang='.sql_quote($lang)
 				);
 				
-				$ordre=verifier_ordre($where);	
+				$ordre=$verifier_ordre($where);	
 				}
 			}
 		else{
@@ -103,10 +56,9 @@ function action_ranger_dist(){
 		spip_log('eliminer 1','selection');
 			$where=array(
 				'id_objet='.$id_objet,
-				'objet="'.$objet.'"',
-				'lang="'.$lang.'"',	
-				'id_objet_dest="'.$id_objet_dest.'"',
-				'objet_dest="'.$objet_dest.'"',
+				'objet='.sql_quote($objet),
+				'id_objet_dest='.$id_objet_dest,
+				'objet_dest='.sql_quote($objet_dest),
 				);
 										
 			sql_delete("spip_selection_objets",$where);
@@ -115,11 +67,11 @@ function action_ranger_dist(){
 				
 			$where = array(
 				'id_objet_dest='.$id_objet_dest,
-				'objet_dest="'.$objet_dest.'"',
-				'lang="'.$lang.'"',	
+				'objet_dest='.sql_quote($objet_dest),
+				'lang='.sql_quote($lang)	
 				);
 				
-			verifier_ordre($where);	
+			$ordre=$verifier_ordre($where);	
 			}
 	
 	}
@@ -237,8 +189,8 @@ function action_ranger_dist(){
 			}
 
 	
-	}	
-
+	}
+return;
 }
 
 ?>
