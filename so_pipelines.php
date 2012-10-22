@@ -32,25 +32,20 @@ function so_affiche_milieu ($vars="") {
         $id_article = $vars["args"]["id_article"];
         $data = $vars["data"];
         
-        $active = picker_selected(lire_config('pb_selection/selection_rubrique'),'rubrique');
+        $active = picker_selected(lire_config('so/selection_rubrique'),'rubrique');
+        
+
         
     
         if ($exec == "rubrique" && in_array($id_rubrique,$active) OR ($exec == "accueil" && in_array($id_rubrique,$active))) {
-
             include_spip("inc/utils");
-    
-            
             $contexte = array('id_objet_dest'=>$id_rubrique,'objet_dest'=>'rubrique');
-    
             $ret .= "<div id='pave_selection'>";
-        
             $page = recuperer_fond('prive/inclure/selection_interface', $contexte,array('ajax'=>'oui'));
-            $ret .= $page["texte"];
-
+            $ret .= $page;
             $ret .= "</div>";
 
         }
-
 
         $data .= $ret;
     
