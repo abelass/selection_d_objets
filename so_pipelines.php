@@ -1,54 +1,26 @@
 <?php
 
 function so_affiche_gauche($flux) {
-   $exec = $flux["args"]["exec"];
-
-   
-      $contexte = array();
+    include_spip('inc/config');
+    
+    $exec = $flux["args"]["exec"];
+    $contexte=array();
+    $objets=lire_config('so/selection_rubrique_objet',array());
+    $args=$flux['args'];
+    $objet_contexte=$args['exec'];
+    $contexte['objet_dest']='rubrique';
+    foreach($objets AS $objet){
+        if($objet_contexte==$objet){
+            $contexte['objet']=$objet;
+            $contexte['id_objet']=$flux["args"]['id_'.$objet]?$flux["args"]['id_'.$objet]:_request('id_'.$objet); 
+            $contexte['langue']=sql_getfetsel('lang','spip_'.$objet.'s','id_'.$objet.'='.$contexte['id_objet']);
+            $contexte['lang'] = $contexte['langue'];
+            if ($objet='rubrique' AND !$trad_rub=test_plugin_actif('tradrub')) $contexte['langue']=lire_config('langues_multilingue');
+            $fond = recuperer_fond("prive/gauche", $contexte);
+            $flux["data"] .= $fond;
+            }
+        }
       
-   	switch($exec){
-   	case  'article':
-   		$contexte['objet']='article';
-    	$contexte['id_objet']=$flux["args"]["id_article"]; 
-    		
-    	$sql = sql_fetsel('lang','spip_articles','id_article='.$contexte['id_objet']);
-
-		$contexte['langue'] = $sql['lang'];	
-		$contexte['lang'] = $contexte['langue'];			
-			
-    		 				
-   		break;
-   		
-   	case  'rubrique':
-		include_spip('inc/config');
-    	$contexte['objet']='rubrique';
-
-    	$contexte['id_objet']=$flux["args"]["id_rubrique"]; 
-    		  		
-   		$sql = sql_fetsel('langue_choisie,lang','spip_rubriques','id_rubrique='.$contexte['id_objet']);
-   		
-   		$contexte['langue'] = $sql['lang'];
-   		
-		if (!$trad_rub=test_plugin_actif('tradrub')) $contexte['langue']=lire_config('langues_multilingue');
-		else $contexte['lang'] = $contexte['langue'];	
-		
-		
-   		
-   		/*if($sql['langue_choisie']!='non')$contexte['langue'] = $sql['lang'];
-   		
-   		if($sql['langue_choisie'] == 'non') $contexte['langue'] = explode(",",lire_config("langues_utilisees"));  */
-
-   		break;   
-   	}
-
-	if ($contexte['objet']){
-		
-	
-
-      $ret .= recuperer_fond("prive/gauche", $contexte);
-
-      $flux["data"] .= $ret;
-	};
     return $flux;
 }
 
