@@ -18,7 +18,8 @@
         
         <BOUCLE_rub(RUBRIQUES){id_rubrique=#ID_OBJET_DEST}{tout}>
         #SET{exclude,#GET{exclude}|array_merge{#ARRAY{#COMPTEUR_BOUCLE,#ID_RUBRIQUE}}}
-        <li>#TITRE<a href="[(#SELF|parametre_url{eliminer_rubrique,#ID_RUBRIQUE})]" class="ajax">&nbsp;<img src="[(#CHEMIN{imgs/item-remove.png})]"></a></li>
+        <li>#TITRE<a href="[(#URL_ACTION_AUTEUR{ranger,supprimer_ordre-[(#ENV{langue})]-[(#ID_OBJET)]-#OBJET-[(#OBJET_DEST)]-[(#ID_OBJET_DEST)],[(#SELF)]})]
+" class="ajax">&nbsp;<img src="[(#CHEMIN{imgs/item-remove.png})]"></a></li>
         </BOUCLE_rub>
     </BOUCLE_affichage>
     </ul>
@@ -28,7 +29,6 @@
 <BOUCLE_test(POUR){tableau #GET{id_rubrique}}>
 #SET{id_rub,#VALEUR}
 </BOUCLE_test>
-
 
 
 
