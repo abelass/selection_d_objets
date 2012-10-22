@@ -30,7 +30,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubriques_choisis' => 'Rubriques choisis :',
 	
 	//s
-	'selection_objet' => 'Sélection',	
+	'selection_objet' => 'Sélection',
+	'selection_objets_pour' => 'Sélection objets pour',		
 	'selection_rubrique_dest' => 'Rubrique(s) de déstination',
     'selection_rubrique_objet' => 'Objets proposé pour la sélection',
     
