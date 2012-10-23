@@ -49,12 +49,18 @@ function url_objet($id_objet,$objet){
 }
 
 function generer_modele($id_objet,$objet='article',$fichier='modeles_so/defaut',$env=array(),$where=''){
-
+    include_spip('inc/utils');
     if(!$where)$where='id_'.$objet.'='.$id_objet;
     $contexte=sql_fetsel('*','spip_'.$objet.'s',$where);
     if(is_array($env))$contexte= array_merge($env,$contexte);
     $contexte['objet']=$objet;
     $contexte['id_objet']=$id_objet; 
+    $rest = substr($objet, 0,3);
+    $extensions=array('png','jpg','gif');
+    foreach($extensions as $extension){
+        if($contexte['logo_objet']=find_in_path('IMG/'.$rest.'on'.$id_objet.'.'.$extension))break;
+    }
+
     $fond=recuperer_fond($fichier,$contexte);
     
     return $fond;
