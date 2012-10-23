@@ -4,32 +4,34 @@
 
 	
 	<B_rub>
-	<fieldset>
+	<li>
 	<label><:so:affichage_section:></label>
 	<select name="id_objet_dest">
-	[([(#GET{id_secteur}|in_array{#GET{id_rubrique}}|oui)
+	[([(#GET{id_secteur}|in_array{#ENV{id_rubrique}}|oui)
 		[(#ENV{exclure_source}|non)
 		<option value="0"><:so:racine:></option>
 		]
 	]
-      <BOUCLE_rub(RUBRIQUES){id_rubrique IN #ENV{rubriques}} {lang=#ENV{langue}}{id_rubrique !IN #ENV{exclure}}>
+      <BOUCLE_rub(RUBRIQUES){id_rubrique IN #ENV{rubriques}} {lang=#ENV{langue}}{id_rubrique !IN #ENV{exclure}}{tout}>
    	<option value="#ID_RUBRIQUE" >#TITRE</option>
       </BOUCLE_rub>  
 	</select>
     	<p class="boutons">
     	 	<input type="submit" name="ok" class="submit" value="ok"  />
-    	</fieldset> 	
+    	 </p>
+    </li>	
     	</B_rub>
-	[(#GET{id_secteur}|in_array{#GET{id_rubrique}}|oui)
+	[(#GET{id_secteur}|in_array{#ENV{id_rubrique}}|oui)
 		[(#ENV{exclure_source}|non)
-		<fieldset>
 	<label><:so:affichage_section:></label>
-	<select name="id_objet_dest">	
+	<select name="id_objet_dest">
+	    <li>
 		<option value="0"><:so:racine:></option>
 		</select>
     	<p class="boutons">
     	 	<input type="submit" name="ok" class="submit" value="ok"  />
-    	</fieldset> 	
+    	</p>
+    	</li>  	
 		]
 	]    	
     	<//B_rub>

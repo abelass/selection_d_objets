@@ -36,27 +36,40 @@
 #SET{compteur,#COMPTEUR_BOUCLE}
 
 
-    <form action="[(#ENV{action}|parametre_url{eliminer_rubrique,''})]" method="post">
-        #ACTION_FORMULAIRE{#ENV{action}}
+[(#GET{compteur}|>{1}|oui)
+[<div class="formulaire_spip formulaire_bouton_objet" id="formulaire_bouton_objet">
 
-[(#GET{compteur}|>{1}|oui)<INCLURE{fond=formulaires/inc-boutons_article,id_rubrique=#GET{id_rubrique},exclure=#GET{exclude},rubriques=#GET{id_rubrique}}{exclure_source=#GET{exclude_source}}{langue}/>]
+    <form action="#ENV{action}" method="post">
+        #ACTION_FORMULAIRE{#ENV{action}}
+    <ul>
+        (#INCLURE{fond=formulaires/inc-boutons_article,id_rubrique=#GET{id_rubrique},exclure=#GET{exclude},rubriques=#GET{id_rubrique}}{exclure_source=#GET{exclude_source},langue})
+    </ul>
+    </form>
+</div>]
+    
+    ]
 
 [(#GET{compteur}|=={1}|oui)
     [(#GET{exclude_source}|non)
-<fieldset><label><:pb_selection:affichage_section:></label>
-        <div>
+<div class="formulaire_spip formulaire_bouton_objet" id="formulaire_bouton_objet">
+
+    <form action="#ENV{action}" method="post">    
+    <label><:pb_selection:affichage_section:></label>
+        <ul>
         [(#GET{id_rub}|=={0}|?
                 {<:pb_selection:racine:>,
-                [(#INCLURE{fond=formulaires/inc-boutons_article_trub}{id_rubrique=#GET{id_rub}})]
+                [<li>(#INCLURE{fond=formulaires/inc-boutons_article_trub}{id_rubrique=#GET{id_rub}})</li>]
                 }
             )]
-        </div>
+        </ul>
             <input name="id_rubrique" value="#GET{id_rub}" type="hidden"/>  
+        <p class="button">   
             <input type="submit" name="ok" class="submit" value="ok"  />
-            </fieldset> 
+         </p> 
+    </form>
+</div>            
         ]
 ]
-    </form>
 
 
 
