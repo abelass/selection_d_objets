@@ -19,7 +19,13 @@
 
     </caption>
 	<BOUCLE_selection(SELECTION_OBJETS){par ordre,lang}{lang=#VALEUR}{id_objet_dest ?} {objet_dest?}>
-	[(#INCLURE{fond=prive/inclure/selection_interface_tr_#OBJET,env,id_article=#ID_OBJET,id_rubrique=#ID_OBJET,langue=#VALEUR,compteur_boucle=#COMPTEUR_BOUCLE}{objet_dest}{id_objet_dest}{total_boucle=#TOTAL_BOUCLE})]
+	
+	[(#ID_OBJET|generer_modele{#OBJET,modeles_so/selection_interface_tr,#ARRAY{
+        langue,#VALEUR,
+        objet_dest,#OBJET_DEST,
+        id_objet_dest,#ID_OBJET_DEST,
+        total_boucle,#TOTAL_BOUCLE,
+        }})]
 	
 	</BOUCLE_selection>
 	</table></div>

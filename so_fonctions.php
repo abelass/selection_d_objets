@@ -21,7 +21,14 @@ function info_objet($id_objet,$objet,$champ='*'){
        );
         
     foreach($filtres as $filtre => $champ){
-        if(is_array($data) AND $data[$champ]) $data[$champ]=$filtre($data[$champ]);
+        if(is_array($data) AND $data[$champ]){
+            if(is_array($champ)){
+                foreach($champ as $c){
+                    $data[$champ]=$filtre($data[$c]);
+                    }
+                }
+            }
+         
         else $data=$filtre($data);
         }
 	return $data;
@@ -41,5 +48,15 @@ function url_objet($id_objet,$objet){
 	return $lien;
 }
 
+function generer_modele($id_objet,$objet='article',$fichier='modeles_so/defaut',$env=array(),$where=''){
 
+    if(!$where)$where='id_'.$objet.'='.$id_objet;
+    $contexte=sql_fetsel('*','spip_'.$objet.'s',$where);
+    if(is_array($env))$contexte= array_merge($env,$contexte);
+    $contexte['objet']=$objet;
+    $contexte['id_objet']=$id_objet; 
+    $fond=recuperer_fond($fichier,$contexte);
+    
+    return $fond;
+}
 ?>
