@@ -25,7 +25,7 @@ function so_affiche_gauche($flux) {
 }
 
 function so_affiche_milieu ($vars="") {
-    include_spip('inc/config');
+include_spip('inc/config');
     $exec = $vars["args"]["exec"];
    
     $id_rubrique = $vars["args"]["id_rubrique"];
@@ -35,8 +35,7 @@ function so_affiche_milieu ($vars="") {
         
         $active = picker_selected(lire_config('so/selection_rubrique_dest'),'rubrique');
 
-    
-        if ($exec == "rubrique" && in_array($id_rubrique,$active)) {echo 1;
+        if ($exec == "rubrique" && in_array($id_rubrique,$active)) {
             include_spip("inc/utils");
             $contexte = array('id_objet_dest'=>$id_rubrique,'objet_dest'=>'rubrique');
             $ret .= "<div id='pave_selection'>";
