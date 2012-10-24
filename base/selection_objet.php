@@ -30,9 +30,9 @@ function selection_objet_declarer_tables_objets_sql($tables) {
 		'table_objet_surnoms' => array('selectionobjet'), // table_objet('selection_objet') => 'selection_objets' 
 		'field'=> array(
 			"id_selection_objet" => "bigint(21) NOT NULL",
-			"titre"              => "varchar(25) NOT NULL DEFAULT ''",
+			"titre"              => "varchar(255) NOT NULL DEFAULT ''",
 			"descriptif"         => "text NOT NULL DEFAULT ''",
-			"url"                => "varchar(25) NOT NULL DEFAULT ''",
+			"url"                => "varchar(255) NOT NULL DEFAULT ''",
 			"id_objet"           => "bigint(21) NOT NULL",
 			"id_objet_dest"      => "bigint(21) NOT NULL",
 			"objet"              => "varchar(100) NOT NULL",
