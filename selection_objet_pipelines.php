@@ -39,7 +39,7 @@ include_spip('inc/config');
             include_spip("inc/utils");
             $contexte = array('id_objet_dest'=>$id_rubrique,'objet_dest'=>'rubrique');
             $ret .= "<div id='pave_selection'>";
-            $page = recuperer_fond('prive/objets/liste/selection_interface', $contexte,array('ajax'=>'oui'));
+            $page = recuperer_fond('prive/objets/liste/selection_interface', $contexte);
             $ret .= $page;
             $ret .= "</div>";
 

@@ -18,7 +18,7 @@
         
         <BOUCLE_rub(RUBRIQUES){id_rubrique=#ID_OBJET_DEST}{tout}>
         #SET{exclude,#GET{exclude}|array_merge{#ARRAY{#COMPTEUR_BOUCLE,#ID_RUBRIQUE}}}
-        <li>#TITRE<a href="[(#URL_ACTION_AUTEUR{ranger,supprimer_ordre-[(#ENV{langue})]-[(#ID_OBJET)]-#OBJET-[(#OBJET_DEST)]-[(#ID_OBJET_DEST)],[(#SELF)]})]
+        <li><a href="#URL_ECRIRE{rubrique,id_rubrique=#ID_RUBRIQUE}#selection_objets">#TITRE</a> <a href="[(#URL_ACTION_AUTEUR{ranger,supprimer_ordre-[(#ENV{langue})]-[(#ID_OBJET)]-#OBJET-[(#OBJET_DEST)]-[(#ID_OBJET_DEST)],[(#SELF)]})]
 " class="ajax">&nbsp;<img src="[(#CHEMIN{imgs/item-remove.png})]"></a></li>
         </BOUCLE_rub>
     </BOUCLE_affichage>

@@ -1,18 +1,8 @@
 <?php
 
 function action_ranger_dist(){
-
-
-	include_spip("inc/presentation");
 	include_spip("inc/autoriser");
-	include_spip("inc/puce_statut");
 	include_spip("inc/config");
-	
-	
-	define('_DIR_PB_REL', _DIR_RESTREINT ? '../' : '');
-
-	$p=explode(basename(_DIR_PLUGINS)."/",str_replace('\\','/',realpath(dirname(__FILE__))));
-	define('_DIR_PLUGIN_SELECTION',(_DIR_PLUGINS.end($p)));
 
 
     
