@@ -48,6 +48,7 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
     $valeurs='';
     $id_objet_dest=_request('id_objet_dest');
     $verifier_ordre=charger_fonction('verifier_ordre','inc');
+    $statut='publie';
 	
 	/*if(!$id_objet_dest){
 		$id_objet_dest ='0';
@@ -80,7 +81,8 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 					'id_objet_dest'=>$id_objet_dest,
 					'objet_dest'=>$objet_dest,			 	
 					'ordre'=>$ordre, 
-					'lang'=>$l
+					'lang'=>$l,
+					'statut'=>  $statut
 					);
 					
 				sql_insertq("spip_selection_objets",$valeurs);
@@ -94,7 +96,7 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 				'objet_dest='.sql_quote($objet_dest),
 				'lang='.sql_quote($langue[0]),	
 				);
-			// on vérifie l'ordre des objets déjà enregistrés et on corrige si besoin
+			// on vérifie l'ordre des objets déjà enregistrés et on corrige si beselection_objetin
 			
 			$ordre=$verifier_ordre($where);
 				
@@ -107,7 +109,8 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 				'id_objet_dest'=>$id_objet_dest,
 				'objet_dest'=>$objet_dest,			 	
 				'ordre'=>$ordre, 
-				'lang'=>$langue[0]
+				'lang'=>$langue[0],
+				'statut'=>  $statut
 				);
 					
 			sql_insertq("spip_selection_objets",$vals);

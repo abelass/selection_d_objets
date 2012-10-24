@@ -13,13 +13,13 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  */
 
 // declaration vide pour ce pipeline.
-function so_autoriser(){}
+function selection_objet_autoriser(){}
 
 
 /* Exemple
-function autoriser_configurer_so_dist($faire, $type, $id, $qui, $opt) {
+function autoriser_configurer_selection_objet_dist($faire, $type, $id, $qui, $opt) {
 	// type est un objet (la plupart du temps) ou une chose.
-	// autoriser('configurer', '_so') => $type = 'so'
+	// autoriser('configurer', '_selection_objet') => $type = 'selection_objet'
 	// au choix
 	return autoriser('webmestre', $type, $id, $qui, $opt); // seulement les webmestres
 	return autoriser('configurer', '', $id, $qui, $opt); // seulement les administrateurs complets

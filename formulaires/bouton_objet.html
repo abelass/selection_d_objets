@@ -1,19 +1,19 @@
-#SET{id_rubrique,#CONFIG{so/selection_rubrique_dest,#ARRAY}|picker_selected{rubrique}}
+#SET{id_rubrique,#CONFIG{selection_objet/selection_rubrique_dest,#ARRAY}|picker_selected{rubrique}}
 
 #SET{exclude,#ARRAY}
 <B_test>
 
     
-        <h2><:so:selection_objet:> [(#VAL|lister_tables_objets_sql|table_valeur{spip_#OBJETs}|table_valeur{texte_objets}|_T)]</h2>
+        <h2><:selection_objet:selection_objet:> [(#VAL|lister_tables_objets_sql|table_valeur{spip_#OBJETs}|table_valeur{texte_objets}|_T)]</h2>
       
     <B_affichage>
     <p>
-    <b><:so:objet_destination_choisis:></b>
+    <b><:selection_objet:objet_destination_choisis:></b>
     <ul style="list-style:none;text-align:left;">   
-    <BOUCLE_affichage(SELECTION_OBJETS){id_objet}{objet}>
-        [(#ID_RUBRIQUE|=={0}|oui)<li><:so:racine:><a href="[(#SELF|parametre_url{eliminer_rubrique,'racine'})]" class="ajax">&nbsp;<img src="#CHEMIN{imgs/item-remove.png}"></a></li>
+    <BOUCLE_affichage(SELECTION_OBJETS){id_objet}{statut ?}{objet}>
+        [(#ID_RUBRIQUE|=={0}|oui)<li><:selection_objet:racine:><a href="[(#SELF|parametre_url{eliminer_rubrique,'racine'})]" class="ajax">&nbsp;<img src="#CHEMIN{imgs/item-remove.png}"></a></li>
         #SET{exclude,#GET{exclude}|array_merge{#ARRAY{0,0}}}
-        #SET{exclude_source,oui}
+        #SET{exclude_selection_objeturce,oui}
         ]
         
         <BOUCLE_rub(RUBRIQUES){id_rubrique=#ID_OBJET_DEST}{tout}>
@@ -42,7 +42,7 @@
     <form action="#ENV{action}" method="post">
         #ACTION_FORMULAIRE{#ENV{action}}
     <ul>
-        (#INCLURE{fond=formulaires/inc-boutons_article,id_rubrique=#GET{id_rubrique},exclure=#GET{exclude},rubriques=#GET{id_rubrique}}{exclure_source=#GET{exclude_source},langue})
+        (#INCLURE{fond=formulaires/inc-boutons_article,id_rubrique=#GET{id_rubrique},exclure=#GET{exclude},rubriques=#GET{id_rubrique}}{exclure_selection_objeturce=#GET{exclude_selection_objeturce},langue})
     </ul>
     </form>
 </div>]
@@ -50,7 +50,7 @@
     ]
 
 [(#GET{compteur}|=={1}|oui)
-    [(#GET{exclude_source}|non)
+    [(#GET{exclude_selection_objeturce}|non)
 <div class="formulaire_spip formulaire_bouton_objet" id="formulaire_bouton_objet">
 
     <form action="#ENV{action}" method="post">    

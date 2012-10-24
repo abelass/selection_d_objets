@@ -8,11 +8,22 @@
             ]
             
         </td>
-        
+        <td class='statut'>[(#STATUT|puce_statut{selection_objet,#ID_SELECTION_OBJET})]</td> 
         <td class="titre">[<a href="[(#URL_ECRIRE{#OBJET}|parametre_url{id_#OBJET,#ID_OBJET})]">(#ENV{logo_objet}|image_reduire{25}|inserer_attribut{class,spip_logos}) </a>]
-        <a href="[(#URL_ECRIRE{#OBJET}|parametre_url{id_#OBJET,#ID_OBJET})]">[(#SURTITRE)<br />]<b>#TITRE</b>[<br />(#SOUSTITRE)]</a></td>
+        <a href="[(#URL_ECRIRE{#OBJET}|parametre_url{id_#OBJET,#ID_OBJET})]">[(#TITRE|sinon{#ID_OBJET|info_objet{#OBJET,titre}})]</a></td>
         <td class="arial1">[(#DATE|affdate)]</td>
         <td class="arial1"><b style="white-space: nowrap;">N°#ID_OBJET</b></td>
+        <td>
+            [(#AUTORISER{modifier,selection_objet,#ID_SELECTION_OBJET})
+                [(#ID_SELECTION_OBJET|afficher_qui_edite{selection_objet}|non)
+                    [(#URL_ECRIRE{selection_objet_edit,id_selection_objet=#ID_SELECTION_OBJET}|icone_verticale{<:selection_objet:icone_modifier_selection_objet:>,objet,edit})]
+                ]
+                [(#ID_SELECTION_OBJET|afficher_qui_edite{selection_objet}|oui)
+                    [(#URL_ECRIRE{selection_objet_edit,id_selection_objet=#ID_SELECTION_OBJET}|icone_verticale{#ID_SELECTION_OBJET|afficher_qui_edite{selection_objet},warning-24,'',edition_deja})]
+                ]
+            ]
+            
+        </td>
         
         <td>
             <a title='Retirer de la liste' class="ajax" href="[(#URL_ACTION_AUTEUR{ranger,supprimer_ordre-[(#ENV{langue})]-[(#ID_OBJET)]-#OBJET-[(#OBJET_DEST)]-[(#ENV{id_objet_dest})],[(#SELF)]#[(#ENV{langue})]})]"><img src="#CHEMIN{imgs/item-remove.png}" alt="X" /></a>

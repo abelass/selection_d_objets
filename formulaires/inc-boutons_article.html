@@ -5,11 +5,11 @@
 	
 	<B_rub>
 	<li>
-	<label><:so:affichage_section:></label>
+	<label><:selection_objet:affichage_section:></label>
 	<select name="id_objet_dest">
 	[([(#GET{id_secteur}|in_array{#ENV{id_rubrique}}|oui)
-		[(#ENV{exclure_source}|non)
-		<option value="0"><:so:racine:></option>
+		[(#ENV{exclure_selection_objeturce}|non)
+		<option value="0"><:selection_objet:racine:></option>
 		]
 	]
       <BOUCLE_rub(RUBRIQUES){id_rubrique IN #ENV{rubriques}} {lang=#ENV{langue}}{id_rubrique !IN #ENV{exclure}}{tout}>
@@ -22,11 +22,11 @@
     </li>	
     	</B_rub>
 	[(#GET{id_secteur}|in_array{#ENV{id_rubrique}}|oui)
-		[(#ENV{exclure_source}|non)
-	<label><:so:affichage_section:></label>
+		[(#ENV{exclure_selection_objeturce}|non)
+	<label><:selection_objet:affichage_section:></label>
 	<select name="id_objet_dest">
 	    <li>
-		<option value="0"><:so:racine:></option>
+		<option value="0"><:selection_objet:racine:></option>
 		</select>
     	<p class="boutons">
     	 	<input type="submit" name="ok" class="submit" value="ok"  />

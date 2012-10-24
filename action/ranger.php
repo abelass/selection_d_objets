@@ -40,7 +40,7 @@ function action_ranger_dist(){
 							
 				sql_delete("spip_selection_objets",$where);
 					
-				// on vérifie l'ordre des objets déjà enregistrés et on corrige si besoin
+				// on vérifie l'ordre des objets déjà enregistrés et on corrige si beselection_objetin
 				
 				$where = array(
 				'id_objet_dest='.$id_objet_dest,
@@ -63,7 +63,7 @@ function action_ranger_dist(){
 										
 			sql_delete("spip_selection_objets",$where);
 					
-			// on vérifie l'ordre des objets déjà enregistrés et on corrige si besoin
+			// on vérifie l'ordre des objets déjà enregistrés et on corrige si beselection_objetin
 				
 			$where = array(
 				'id_objet_dest='.$id_objet_dest,
