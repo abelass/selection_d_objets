@@ -10,19 +10,5 @@
 	Bouton voir en ligne
 
 ]
-<BOUCLE_publie(SELECTION_OBJETS){id_selection_objet}>
-	[(#VAL{redirect}
-		|generer_url_action{type=selection_objet&id=#ID_SELECTION_OBJET}
-		|parametre_url{var_mode,calcul}
-		|icone_horizontale{<:icone_voir_en_ligne:>,racine})]
-</BOUCLE_publie>
-	[(#AUTORISER{previsualiser,selection_objet,#ID_SELECTION_OBJET,'',#ARRAY{statut,#STATUT}})
-		[(#VAL{redirect}
-			|generer_url_action{type=selection_objet&id=#ID_SELECTION_OBJET}
-			|parametre_url{var_mode,preview}
-			|icone_horizontale{<:previsualiser:>,preview})]
-	]
-<//B_publie>
-
 </div>
 </BOUCLE_objet>
