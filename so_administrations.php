@@ -21,7 +21,10 @@ function so_upgrade($nom_meta_base_version, $version_cible) {
 
 	$maj['create'] = array(array('maj_tables', array('spip_selection_objets')));
 	$maj['0.1.0'] = array(array('maj_tables', array('spip_selection_objets')));
-
+    $maj['0.2.0'] = array(array('maj_tables', array('spip_selection_objets')));
+    $maj['0.2.1'] = array(array('maj_tables', array('spip_selection_objets')));    
+    $maj['0.2.2'] = array(array('maj_tables', array('spip_selection_objets')));    
+        
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
