@@ -16,8 +16,11 @@ function info_objet($id_objet,$objet,$champ='*'){
     //Appliquer des filtres sur des champs spéciciques
     $filtres=array(
         'supprimer_numero'=>array(
-        'titre','nom'
-        )
+            'titre','nom'
+            ),
+        'typo'=>array(
+            'titre','nom'
+            ),
        );
         
     foreach($filtres as $filtre => $champ){
