@@ -7,9 +7,9 @@
         <h3 class="titrem"><:selection_objet:selection_objet:> [(#VAL|lister_tables_objets_sql|table_valeur{spip_#OBJETs}|table_valeur{texte_objets}|_T)]</h3>
       
     <B_affichage>
-    <p>
-    <b><:selection_objet:objet_destination_choisis:></b>
-    <ul style="list-style:none;text-align:left;">   
+
+    <strong><:selection_objet:objet_destination_choisis:></strong>
+    <ul>   
     <BOUCLE_affichage(SELECTION_OBJETS){id_objet}{statut ?}{objet}>
         [(#ID_RUBRIQUE|=={0}|oui)<li><:selection_objet:racine:><a href="[(#SELF|parametre_url{eliminer_rubrique,'racine'})]" class="ajax">&nbsp;<img src="#CHEMIN{imgs/item-remove.png}"></a></li>
         #SET{exclude,#GET{exclude}|array_merge{#ARRAY{0,0}}}
@@ -24,7 +24,7 @@
     </BOUCLE_affichage>
     </ul>
     #SET{nombre,#TOTAL_BOUCLE}
-    </p>
+
     </B_affichage>
 <BOUCLE_test(POUR){tableau #GET{id_rubrique}}>
 #SET{id_rub,#VALEUR}
