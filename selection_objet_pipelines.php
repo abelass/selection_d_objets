@@ -38,16 +38,13 @@ include_spip('inc/config');
         if ($exec == "rubrique" && in_array($id_rubrique,$active)) {
             include_spip("inc/utils");
             $contexte = array('id_objet_dest'=>$id_rubrique,'objet_dest'=>'rubrique');
-            $ret .= "<div id='pave_selection'>";
-            $page = recuperer_fond('prive/objets/liste/selection_interface', $contexte);
-            $ret .= $page;
-            $ret .= "</div>";
 
+            $page = recuperer_fond('prive/objets/liste/selection_interface', $contexte);
         }
 
         $data .= $ret;
     
-        $vars["data"] = $data;
+        $vars["data"] .=$page;
         return $vars;
     }
 

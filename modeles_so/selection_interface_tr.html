@@ -30,22 +30,15 @@
         
     </tr>
     
-    
+<script type="text/javascript">
     $(document).ready(function(){   
 
     //alert('hi');
-    $('#call1').click(function(){
+    $('.tr_liste a').click(function(){
 
-        $('#text').load('click1.html')
-    })   
+        $('#selection_objets').load($(this).attr("href"));
+    });   
 
-    $('#call2').click(function(){
-
-        $('#text').load('click2.html')
-    })  
-
-    $('#call3').click(function(){
-
-        $('#text').load('click3.html')
-    })      
-})
+   
+});
+</script>
