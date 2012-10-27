@@ -7,7 +7,7 @@ function action_ranger_dist(){
 
     
   
-	list($action,$lang,$id_objet,$objet,$objet_dest,$id_objet_dest)=explode('-',_request('arg'));
+	list($action,$lang,$id_objet,$objet,$objet_dest,$id_objet_dest,$load)=explode('-',_request('arg'));
 
 	if ($action=="supprimer_ordre") {
 	    $verifier_ordre=charger_fonction('verifier_ordre','inc');
@@ -180,7 +180,11 @@ function action_ranger_dist(){
 
 	
 	}
-return;
+    if($load){
+        $contexte = array('id_objet_dest'=>$id_objet_dest,'objet_dest'=>$objet_dest);
+        $return=recuperer_fond('prive_objets/seelction_interface',$contexte);
+    } 
+return $return;
 }
 
 ?>
