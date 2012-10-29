@@ -85,7 +85,7 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 					'statut'=>  $statut
 					);
 					
-				sql_insertq("spip_selection_objets",$valeurs);
+				sql_insertq("spip_selection_objets",$vals);
 				}
 
 			}

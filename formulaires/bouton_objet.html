@@ -53,8 +53,8 @@
     [(#GET{exclude_selection_objeturce}|non)
 <div class="formulaire_spip formulaire_bouton_objet" id="formulaire_bouton_objet">
 
-    <form action="#ENV{action}" method="post">    
-    <label><:pb_selection:affichage_section:></label>
+    <form action="#ENV{action}" method="post">
+        #ACTION_FORMULAIRE{#ENV{action}}
         <ul>
         [(#GET{id_rub}|=={0}|?
                 {<:pb_selection:racine:>,
