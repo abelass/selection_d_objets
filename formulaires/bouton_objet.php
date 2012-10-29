@@ -60,7 +60,7 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 
 
 		// si objet pas définit par langue on enrgistre pour chaque langue du site
-		if(count($langue)>1){
+		if(count($langue)>1 AND $objet!='article'){
 		
 			foreach ($langue as $key => $l){
 						

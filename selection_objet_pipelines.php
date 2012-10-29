@@ -15,7 +15,7 @@ function selection_objet_affiche_gauche($flux) {
             $contexte['id_objet']=$flux["args"]['id_'.$objet]?$flux["args"]['id_'.$objet]:_request('id_'.$objet); 
             $contexte['langue']=sql_getfetsel('lang','spip_'.$objet.'s','id_'.$objet.'='.$contexte['id_objet']);
             $contexte['lang'] = $contexte['langue'];
-            if ($objet='rubrique' AND !$trad_rub=test_plugin_actif('tradrub')) $contexte['langue']=lire_config('langues_multilingue');
+            if ($objet=='rubrique' AND !$trad_rub=test_plugin_actif('tradrub')) $contexte['langue']=lire_config('langues_multilingue');
             $fond = recuperer_fond("prive/squelettes/navigation/affiche_gauche", $contexte);
             $flux["data"] .= $fond;
             }
