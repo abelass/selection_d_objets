@@ -180,11 +180,11 @@ function action_ranger_dist(){
 
 	
 	}
-    if($load){
+    //if($load){
         $contexte = array('id_objet_dest'=>$id_objet_dest,'objet_dest'=>$objet_dest);
-        $return=recuperer_fond('prive_objets/seelction_interface',$contexte);
-    } 
-return $return;
+        $return=recuperer_fond('modeles_so/selection_interface_tr',$contexte);
+   // } 
+echo serialize(_request('nouvel_ordre')).$return;
 }
 
 ?>

@@ -23,5 +23,5 @@
 	<pipeline nom="declarer_tables_interfaces" inclure="base/selection_objet.php" />
 	<pipeline nom="affiche_milieu" inclure="selection_objet_pipelines.php" /> 
 	<pipeline nom="affiche_gauche" inclure="selection_objet_pipelines.php" /> 	 
-
+	<pipeline nom="jqueryui_plugins" inclure="selection_objet_pipelines.php" /> 	 
 </paquet>
