@@ -60,7 +60,7 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 
 
 		// si objet pas définit par langue on enrgistre pour chaque langue du site
-		if(count($langue)>1 AND $objet!='article'){
+		if(count($langue)>1){
 		
 			foreach ($langue as $key => $l){
 						
@@ -98,6 +98,7 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 				);
 			// on vérifie l'ordre des objets déjà enregistrés et on corrige si beselection_objetin
 			
+			if($objet=='article')$lang=
 			$ordre=$verifier_ordre($where);
 				
 			// on rajoute comme dernier le nouveau objet			
