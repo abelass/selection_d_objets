@@ -1,3 +1,8 @@
 *.class
 *.pyc
 *.pyo
+*.class
+*.pyc
+*.pyo
+.svn
+_svn
