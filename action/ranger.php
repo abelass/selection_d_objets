@@ -182,7 +182,7 @@ function action_ranger_dist(){
 	}
     if($load){
         $contexte = array('id_objet_dest'=>$id_objet_dest,'objet_dest'=>$objet_dest);
-        $return=recuperer_fond('prive_objets/seelction_interface',$contexte);
+       echo recuperer_fond('prive/objets/liste/selection_interface',$contexte);
     } 
 return $return;
 }
