@@ -34,24 +34,11 @@ date,#DATE,
 </BOUCLE_langues>
 
 <script type="text/javascript">
-    $(document).ready(function(){   
-   
+    $(document).ready(function(){    
    $('.tr_liste a').click(function(){
-        
-
-        $('#selection_objets').load($(this).attr("href"));
-        return false;
-        /*var action = this.href;
-     $.ajax({
-  url: action,
-  cache: true
-}).done(function( html ) {
-  $("#selection_objets").html(data);
-});  */
-
+      $('#selection_objets').load($(this).attr("href"));
+       return false;
     });
-
-   
 });
 
 </script>
