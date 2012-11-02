@@ -62,6 +62,7 @@ function generer_modele($id_objet,$objet='article',$fichier='modeles_selection_o
     
     $contexte['objet']=$objet;
     $contexte['id_objet']=$id_objet; 
+    if($contexte['nom'])$contexte['titre']=$contexte['nom'];
     $rest = substr($objet, 0,3);
     $extensions=array('png','jpg','gif');
     foreach($extensions as $extension){
