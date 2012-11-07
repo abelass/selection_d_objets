@@ -56,7 +56,7 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 		}*/
 
 	if($langue)$langue=explode(',',$langue);
-	else $langue=array();
+	else $langue=array(0=>sql_getfetsel('lang','spip_'.$objet_dest.'s','id_'.$objet_dest.'='.$id_objet_dest));
 
 
 		// si objet pas définit par langue on enrgistre pour chaque langue du site
@@ -98,7 +98,6 @@ function formulaires_bouton_objet_traiter_dist($id_objet,$objet,$langue,$lang=''
 				);
 			// on vérifie l'ordre des objets déjà enregistrés et on corrige si beselection_objetin
 			
-			if($objet=='article')$lang=
 			$ordre=$verifier_ordre($where);
 				
 			// on rajoute comme dernier le nouveau objet			

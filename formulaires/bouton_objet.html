@@ -50,14 +50,14 @@
     ]
 
 [(#GET{compteur}|=={1}|oui)
-    [(#GET{exclude_selection_objeturce}|non)
+
 <div class="formulaire_spip formulaire_bouton_objet" id="formulaire_bouton_objet">
 
     <form action="#ENV{action}" method="post">
         #ACTION_FORMULAIRE{#ENV{action}}
         <ul>
         [(#GET{id_rub}|=={0}|?
-                {<:pb_selection:racine:>,
+                {<:selection_objet:racine:>,
                 [<li>(#INCLURE{fond=formulaires/inc-boutons_article_trub}{id_rubrique=#GET{id_rub}})</li>]
                 }
             )]
@@ -68,7 +68,7 @@
          </p> 
     </form>
 </div>            
-        ]
+
 ]
 
 </B_test>
