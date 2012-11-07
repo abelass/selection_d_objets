@@ -1,14 +1,7 @@
 *.class
 *.pyc
 *.pyo
-<<<<<<< HEAD
-.svn
-_svn
-=======
-*.class
-*.pyc
-*.pyo
 .svn
 _svn
 .settings
->>>>>>> c6c395746ecc80dc96fe7f646cff0e71f947d25c
+
