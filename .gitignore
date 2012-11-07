@@ -6,3 +6,4 @@
 *.pyo
 .svn
 _svn
+.settings
