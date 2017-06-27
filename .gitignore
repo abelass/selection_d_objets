@@ -3,7 +3,7 @@
 *.pyo
 .svn
 _svn
-.settings
+.settings*
 .project
 
 /.buildpath
