@@ -12,9 +12,6 @@ function selection_objet_affiche_gauche($flux) {
 	include_spip('inc/config');
 	$exec = $flux["args"]["exec"];
 
-	/*Desactivé car il y a u problème  avec les cadres et block_depliables dans l'inclure
-	 * //Exception pour les documents
-	if($objet=='document_edit')$objet='document' ;    */
 	$args = $flux['args'];
 
 	$objets_selection = lire_config('selection_objet/selection_rubrique_objet', array());
