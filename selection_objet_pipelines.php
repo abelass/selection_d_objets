@@ -14,7 +14,7 @@ function selection_objet_affiche_gauche($flux) {
 
 	/*Desactivé car il y a u problème  avec les cadres et block_depliables dans l'inclure
 	 * //Exception pour les documents
-	 if($objet=='document_edit')$objet='document' ;    */
+	if($objet=='document_edit')$objet='document' ;    */
 	$args = $flux['args'];
 
 	$objets_selection = lire_config('selection_objet/selection_rubrique_objet', array());
@@ -92,15 +92,24 @@ function selection_objet_affiche_milieu($flux = "") {
 				'objet_dest' => $objet
 			);
 
-			if ($tables[$table]['field']['lang'])
+			if ($tables[$table]['field']['lang']) {
 				$contexte['langue'] = array(sql_getfetsel('lang', $table, 'id_' . $objet . '=' . $id_objet));
-			elseif ($objet != 'document')
+			}
+			elseif ($objet != 'document') {
 				$contexte['langue'] = array($args['lang']);
-			else
+			}
+			else {
 				$contexte['langue'] = array();
+			}
 			if ($objet == 'rubrique') {
-				if (!$trad_rub = test_plugin_actif('tradrub'))
-					$contexte['langue'] = explode(',', lire_config('langues_multilingue'));
+				if (!$trad_rub = test_plugin_actif('tradrub')) {
+					if ($langues_multilingue = lire_config('langues_multilingue')) {
+						$contexte['langue'] = explode(',', lire_config('langues_multilingue'));
+					}
+					else {
+						$contexte['langue'] = array($args['lang']);
+					}
+				}
 			}
 			if ($objet == 'auteur')
 				$contexte['langue'] = '';
