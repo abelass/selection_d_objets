@@ -256,4 +256,3 @@ function nom_type($type, $objet) {
 
 	return $nom;
 }
-?>
